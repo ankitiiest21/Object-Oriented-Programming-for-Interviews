@@ -1,45 +1,65 @@
-//Program to calculate the no of objects in the heap section......
+#include<iostream>
+#include<bits/stdc++.h> 
 
-#include<bits/stdc++.h>
 using namespace std;
 
-class A{
-public:
-	static int x;
-	//Constructor Declaration
-	A()
-	{
-	 
-	}
-	//Destructor Declaration
-	~A()
-	{
-	 	
-	}
-	//overloading new operator
-	void *operator new(size_t sz){
-		x++;
-	}
-	//overloading delete operator
-	void operator delete(void*sz){
-		x--;
-	}
+class Complex{
+  private:
+  	long double real,imag;
+  public:
+  	Complex(long double r=0,long double i=0):real(r),imag(i){}
+  	//Overloading '+' operator 
+  	Complex operator + (const Complex &obj){
+  		Complex ans;
+  		ans.real=this->real+obj.real;
+  		ans.imag=this->imag+obj.imag;
+  		return ans;
+  	}
+  	//Overloading '-' operator 
+  	Complex operator - (const Complex &obj){
+  		Complex ans;
+  		ans.real=this->real-obj.real;
+  		ans.imag=this->imag-obj.imag;
+  		return ans;
+  	}
+  	//Overloading '*' operator 
+  	Complex operator * (const Complex &obj){
+  		Complex ans;
+  		ans.real=(this->real)*obj.real-(this->imag)*obj.imag;
+  		ans.imag=(this->real)*obj.imag+(this->imag)*obj.real;
+  		return ans;
+  	}
+  	//Overloading '/' operator 
+  	Complex operator / (const Complex &obj){
+  		Complex ans;
+  		ans.real=(this->real)*obj.real+(this->imag)*obj.imag;
+  		ans.imag=(this->imag)*obj.real-(this->real)*obj.imag;
+  		ans.real/=(obj.real*obj.real+obj.imag*obj.imag);
+  		ans.imag/=(obj.real*obj.real+obj.imag*obj.imag);
+  		return ans;
+  	}
+    void print(){
+    	cout<<real<<"+i"<<imag<<endl;
+    }
 };
-int A::x=0;
+
 int main()
 {
  #ifndef ONLINE_JUDGE
- freopen("input.txt","r",stdin);
- freopen("output.txt","w",stdout);
- #endif	
-
- //Dynamic objects(ptr,f) created at run time in heap section of memory.
- A*ptr=new A; 
- A*f = new A; 
-
- //Deallocating memory which in turn calls our overloaded new and delete operator.
- delete f; 
- cout<<A::x<<endl;	
- delete ptr; 
- cout<<A::x<<endl;	
+  freopen("input.txt","r",stdin);
+  freopen("output.txt","w",stdout);
+  #endif
+  ios::sync_with_stdio(0);
+  cin.tie(0);
+  Complex a(3,2),b(2,3);
+  Complex add=a+b;
+  Complex sub=a-b;
+  Complex mul=a*b;
+  Complex div=a/b;
+  add.print();
+  sub.print();
+  mul.print();
+  div.print();
+  return 0;
 }
+
