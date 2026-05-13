@@ -7,7 +7,7 @@ public:
 	int x;
 };
 
-//class D is deriving from class A.
+//class B is deriving from class A.
 class B:public A{
 	public:
 		int y;

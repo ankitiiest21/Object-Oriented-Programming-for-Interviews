@@ -7,7 +7,7 @@ public:
 	int x;
 };
 
-//class D is deriving from class A using virtual keyword.
+//class B is deriving from class A using virtual keyword.
 class B:virtual public A{
 	public:
 		int y;
